@@ -1,17 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
-public class MissileFire : MonoBehaviour {
-    
+public class MissileFire : MonoBehaviour, IHitable
+{
+    public const string MISSILE_POOL_NAME = "MISSILE_POOL_NAME";
+
     [SerializeField]
+    private UnityEvent _onHit;
+
     private Vector3 startMarker;
-    [SerializeField]
     private Vector3 endMarker;
-    [SerializeField]
-    private float time = 5F;
+    private float _time = 5F;
     private float startTime;
     private float journeyLength;
+
+
 
     void Start()
     {
@@ -20,13 +23,14 @@ public class MissileFire : MonoBehaviour {
     }
     void Update()
     {
-        float distCovered = (Time.time - startTime) / time;
+        float distCovered = (Time.time - startTime) / _time;
         float fracJourney = distCovered / journeyLength;
         transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
     }
 
-    void SetMissile (Vector3 startVal, Vector3 endVal)
+    void SetMissile (Vector3 startVal, Vector3 endVal, float time)
     {
+        _time = time;
         startMarker = startVal;
         endMarker = endVal;
         startTime = Time.time;
@@ -35,13 +39,12 @@ public class MissileFire : MonoBehaviour {
 
    void SetTime (float stageTime)
     {
-        time = stageTime;
+        _time = stageTime;
     }
 
-
-
-
-
-
-	
+    public void Hit()
+    {
+        _onHit.Invoke();
+        ObjectPool.Main.PoolObject(MISSILE_POOL_NAME, gameObject);
+    }
 }
