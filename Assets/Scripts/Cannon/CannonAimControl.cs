@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public class CannonControl : MonoBehaviour
+public class CannonAimControl : MonoBehaviour
 {
     [SerializeField, Range(0, 90)]
     private float _maxAngle = 75;
     [SerializeField]
     private float _rotateSpeed = 5;
+
     private AnimationCurve _fireAngleCurve = 
         new AnimationCurve(new Keyframe(0, 90), new Keyframe(.5f, 0), new Keyframe(1, -90));
     

@@ -1,25 +1,32 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MissionControl : MonoBehaviour
 {
     [SerializeField]
-    private CannonControl _cannon;
+    private CannonAimControl _cannon;
     [SerializeField]
-    private Transform _projectSpawnPoint;
+    private CannonFireControl _cannonFire;
+
     [SerializeField]
-    private Projectile _projectile;
+    private FloatEvent _onCommanQueued;
+    [SerializeField]
+    private FloatEvent _onCommandDequeued;
 
     private Queue<float> _cannonCommands
         = new Queue<float>();
 
     private bool _isExecuting = false;
 
+    public int QueuedCommandCount => _cannonCommands.Count;
+
     public void QueueFireAngle(float angle)
     {
-        if (_isExecuting) return;
+        if (_isExecuting || _cannonFire.CurrentAmmo == QueuedCommandCount) return;
         _cannonCommands.Enqueue(angle);
+        _onCommanQueued.Invoke(angle);
         Debug.Log($"Queuing angle command {angle}");
     }
     
@@ -28,11 +35,10 @@ public class MissionControl : MonoBehaviour
         if(_cannonCommands.Any())
         {
             Debug.Log($"Setting cannon angle to {_cannonCommands.Peek()}");
-            _cannon.SetFireAngle(_cannonCommands.Dequeue());
+            _cannon.SetFireAngle(_cannonCommands.Peek());
         }
         else
         {
-            _cannon.TargetLocked -= NextCommand;
             _cannon.TargetLocked -= Fire;
             _isExecuting = false;
         }
@@ -40,8 +46,9 @@ public class MissionControl : MonoBehaviour
 
     private void Fire()
     {
-        var instance = ObjectPool.Main.GetObjectInstance(Projectile.POOL_NAME, () => Instantiate(_projectile.gameObject, _projectSpawnPoint.position, _projectSpawnPoint.rotation));
-        instance.GetComponent<Projectile>().Fire(_projectSpawnPoint.position, _projectSpawnPoint.rotation);
+        _cannonCommands.Dequeue();
+        _cannonFire.Fire();
+        NextCommand();
     }
 
     public void Execute()
@@ -49,7 +56,6 @@ public class MissionControl : MonoBehaviour
         if (_isExecuting) return;
 
         _isExecuting = true;
-        _cannon.TargetLocked += NextCommand;
         _cannon.TargetLocked += Fire;
         NextCommand();
     }
