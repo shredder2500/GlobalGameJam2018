@@ -9,6 +9,7 @@
   4. Chris Taylor - Programer
   5. DJ Johnson - Programer
   6. Tyler Votaw - Sound Engineer
+  7. Drew - Artist
 
 ## Gameplay Mechanics
 <dl>
