@@ -26,7 +26,7 @@
 </dl>
 
 ## Asset List
-<d1>
+<dl>
  <dt>Level
   <dd>Background Image
   <dd>Gun Base
