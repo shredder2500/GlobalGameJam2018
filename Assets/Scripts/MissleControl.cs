@@ -1,16 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MissleControl : MonoBehaviour {
+public class MissleControl : MonoBehaviour
+{
+    private float _fireAngle = 0;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Update()
+    {
+        
+    }
+
+    public void SetFireAngle(float angle) => _fireAngle = angle;
 }
