@@ -27,11 +27,15 @@
 
 ## Asset List
 <d1>
- <dt>Asset List:
+ <dt>Level
   <dd>Background Image
+  <dd>Gun Base
+  <dd>Ground
+ <dt>Moving Parts
   <dd>Missile
   <dd>Gun Turret
-  <dd>Gun Base
   <dd>Projectile
-  <dd>Ground
-  <dd>User Interface Components
+ <dt>User Interface Components
+   <dd>Bullet Count
+   <dd>Warning Indicator
+   <dd>Borders
