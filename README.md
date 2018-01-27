@@ -23,3 +23,15 @@
   <dd>Missile Movement
 <dt>Core Gameplay Mechanic #5
   <dd>Scoreboard
+</dl>
+
+## Asset List
+<d1>
+ <dt>Asset List:
+  <dd>Background Image
+  <dd>Missile
+  <dd>Gun Turret
+  <dd>Gun Base
+  <dd>Projectile
+  <dd>Ground
+  <dd>User Interface Components
