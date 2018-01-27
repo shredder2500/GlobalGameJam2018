@@ -1,16 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour {
 
     private float startTime;
     private float stageTime;
+    private float runTime;
     public float tempTime;
     private bool warnState;
     private bool endState;
     private Text timerText;
+    [SerializeField]
+    private UnityEvent onTimerComplete;
 
 	// Use this for initialization
 	void Start () {
@@ -27,17 +31,18 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        stageTime -= Time.time - startTime;
-        timerText.text = stageTime.ToString("f2");
-        if (stageTime < 3 && stageTime > 0)
+        runTime = Mathf.Clamp(stageTime - (Time.time - startTime), 0, 999);
+        timerText.text = runTime.ToString("f2");
+        if (runTime < 5 && runTime > 0)
         {
             warnState = true;
             timerText.color = Color.yellow;
         }
-        else if (stageTime <= 0)
+        else if (runTime <= 0)
         {
             endState = true;
             timerText.color = Color.red;
+            onTimerComplete.Invoke();
         }
 	}
 
