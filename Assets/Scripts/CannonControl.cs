@@ -16,17 +16,20 @@ public class CannonControl : MonoBehaviour
     public event Action TargetLocked;
     
     private Quaternion CalcTargetQuaternion(Vector3 rotation) =>
-        Quaternion.Euler(rotation.x, rotation.y, Mathf.Clamp(_fireAngle, -_maxAngle, _maxAngle));
+        Quaternion.Euler(rotation.x, rotation.y, _fireAngle);
     
     private Quaternion CalcTargetQuaternion() =>
-        CalcTargetQuaternion(transform.rotation.eulerAngles);
+        CalcTargetQuaternion(transform.localRotation.eulerAngles);
+
+    private float CurrentAngle(float value) => value > 180 ? -(360 - value) : value;
+    private float CurrentAngle() => CurrentAngle(transform.localRotation.eulerAngles.z);
 
     private void Update()
     {
-        if (!CloseEnough(transform.rotation.eulerAngles.z, _fireAngle))
+        if (!CloseEnough(CurrentAngle(), _fireAngle))
         {
             _targetLocked = false;
-            transform.rotation = Quaternion.Lerp(transform.rotation, CalcTargetQuaternion(), _rotateSpeed * Time.deltaTime);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, CalcTargetQuaternion(), _rotateSpeed * Time.deltaTime);
         }
         else if(!_targetLocked)
         {
@@ -35,11 +38,11 @@ public class CannonControl : MonoBehaviour
         }
     }
 
-    private bool CloseEnough(float a, float b, float value = .5f) => Math.Abs(a - b) <= value;
+    private bool CloseEnough(float a, float b, float value = .1f) => Math.Abs(a - b) <= value;
 
     public void SetFireAngle(float angle)
     {
         _targetLocked = false;
-        _fireAngle = _fireAngleCurve.Evaluate(angle / 180);
+        _fireAngle = Mathf.Clamp(_fireAngleCurve.Evaluate(angle / 180), -_maxAngle, _maxAngle);
     }
 }
