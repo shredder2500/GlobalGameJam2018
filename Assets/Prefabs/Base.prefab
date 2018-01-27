@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4056253942187396}
   - component: {fileID: 114423335878237544}
+  - component: {fileID: 114405447768065350}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -142,6 +143,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cannon: {fileID: 114423335878237544}
+  _cannonFire: {fileID: 114405447768065350}
+--- !u!114 &114405447768065350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1211969286677984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f24067446b1a2ab49868311337ab9b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxAmmo: 5
   _projectSpawnPoint: {fileID: 4907297251477512}
   _projectile: {fileID: 114142183689643568, guid: e411471cad4c8074595a9bd1e3e67ef6,
     type: 2}
