@@ -7,6 +7,10 @@ public class MissionControl : MonoBehaviour
 {
     [SerializeField]
     private CannonControl _cannon;
+    [SerializeField]
+    private Transform _projectSpawnPoint;
+    [SerializeField]
+    private Projectile _projectile;
 
     private Queue<float> _cannonCommands
         = new Queue<float>();
@@ -30,8 +34,15 @@ public class MissionControl : MonoBehaviour
         else
         {
             _cannon.TargetLocked -= NextCommand;
+            _cannon.TargetLocked -= Fire;
             _isExecuting = false;
         }
+    }
+
+    private void Fire()
+    {
+        var instance = ObjectPool.Main.GetObjectInstance(Projectile.POOL_NAME, () => Instantiate(_projectile.gameObject, _projectSpawnPoint.position, _projectSpawnPoint.rotation));
+        instance.GetComponent<Projectile>().Fire(_projectSpawnPoint.position, _projectSpawnPoint.rotation);
     }
 
     public void Execute()
@@ -40,6 +51,7 @@ public class MissionControl : MonoBehaviour
 
         _isExecuting = true;
         _cannon.TargetLocked += NextCommand;
+        _cannon.TargetLocked += Fire;
         NextCommand();
     }
 }

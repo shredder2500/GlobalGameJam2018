@@ -38,7 +38,7 @@ public class CannonControl : MonoBehaviour
         }
     }
 
-    private bool CloseEnough(float a, float b, float value = .1f) => Math.Abs(a - b) <= value;
+    private bool CloseEnough(float a, float b, float value = .5f) => Math.Abs(a - b) <= value;
 
     public void SetFireAngle(float angle)
     {
