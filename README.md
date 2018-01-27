@@ -9,6 +9,7 @@
   4. Chris Taylor - Programer
   5. DJ Johnson - Programer
   6. Tyler Votaw - Sound Engineer
+  7. Drew McAllister - Artist
 
 ## Gameplay Mechanics
 <dl>
@@ -22,3 +23,19 @@
   <dd>Missile Movement
 <dt>Core Gameplay Mechanic #5
   <dd>Scoreboard
+</dl>
+
+## Asset List
+<dl>
+ <dt>Level
+  <dd>Background Image
+  <dd>Gun Base
+  <dd>Ground
+ <dt>Moving Parts
+  <dd>Missile
+  <dd>Gun Turret
+  <dd>Projectile
+ <dt>User Interface Components
+   <dd>Bullet Count
+   <dd>Warning Indicator
+   <dd>Borders
