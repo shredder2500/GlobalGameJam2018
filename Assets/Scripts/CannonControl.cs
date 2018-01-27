@@ -37,5 +37,9 @@ public class CannonControl : MonoBehaviour
 
     private bool CloseEnough(float a, float b, float value = .5f) => Math.Abs(a - b) <= value;
 
-    public void SetFireAngle(float angle) => _fireAngle = _fireAngleCurve.Evaluate(angle / 180);
+    public void SetFireAngle(float angle)
+    {
+        _targetLocked = false;
+        _fireAngle = _fireAngleCurve.Evaluate(angle / 180);
+    }
 }
