@@ -17,6 +17,8 @@ public class CannonAimControl : MonoBehaviour
     private UnityEvent _onStartMove;
     [SerializeField]
     private UnityEvent _onEndMove;
+
+    [SerializeField] private FloatEvent _onSetAngle;
     
     private float _fireAngle = 0;
     private bool _targetLocked = false;
@@ -51,6 +53,7 @@ public class CannonAimControl : MonoBehaviour
 
     public void SetFireAngle(float angle)
     {
+        _onSetAngle.Invoke(angle);
         _targetLocked = false;
         _onStartMove.Invoke();
         _fireAngle = Mathf.Clamp(_fireAngleCurve.Evaluate(angle / 180f), -_maxAngle, _maxAngle);
