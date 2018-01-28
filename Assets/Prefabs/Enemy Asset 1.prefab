@@ -86,6 +86,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _speed: 2
 --- !u!212 &212962807777827522
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212914476286292062}
   - component: {fileID: 114345564388698982}
   - component: {fileID: 61055829374923338}
+  - component: {fileID: 114354116292013070}
   m_Layer: 8
   m_Name: Enemy Asset 2
   m_TagString: Untagged
@@ -78,14 +79,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088cc0cee34babc48b43ede03b86f123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _killPoints: 0
+  _killPoints: 1
   _hitMask:
     serializedVersion: 2
     m_Bits: 512
   _onHit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114354116292013070}
+        m_MethodName: Add
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  _speed: 1
+--- !u!114 &114354116292013070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1171525096653088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb9a12ccad351a4e8ed3fb76a8d4df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212914476286292062
 SpriteRenderer:
   m_ObjectHideFlags: 1

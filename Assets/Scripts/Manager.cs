@@ -60,13 +60,22 @@ public class Manager : MonoBehaviour
         var spawnAngle = Mathf.Clamp(spawnDegree.Evaluate(Random.value), -75, 75);
         transform.rotation = CalcTargetQuaternion(spawnAngle);
 
-        var prefab = WeightedRandomizer.From(_enemyPrefab.ToDictionary(value => value.Object, value => value.Weight)).TakeOne();
-
-        var instance = ObjectPool.Main.GetObjectInstance(MissileFire.MISSILE_POOL_NAME, () => Instantiate(prefab).gameObject);
+        var instance = ObjectPool.Main.GetObjectInstance(MissileFire.MISSILE_POOL_NAME, CreateEnemey);
         var enemy = instance.GetComponent<MissileFire>();
         enemy.SetMissile(transform.up * 10, Vector3.zero, _waveTime * 2);
         enemy.OnHit.AddListener(IncreaseScore);
 
+    }
+
+    private GameObject GetRandomEnemy() => WeightedRandomizer
+        .From(_enemyPrefab.ToDictionary(value => value.Object, value => value.Weight))
+        .TakeOne();
+
+    private GameObject CreateEnemey()
+    {
+        var enemy = Instantiate(GetRandomEnemy());
+        enemy.GetComponent<MissileFire>().OnKill += IncreaseScore;
+        return enemy;
     }
 
     public void IncreaseScore(int amount) => _score += amount;

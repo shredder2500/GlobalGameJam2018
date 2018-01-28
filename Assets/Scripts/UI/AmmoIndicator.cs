@@ -23,12 +23,9 @@ public class AmmoIndicator : MonoBehaviour
         = new Queue<GameObject>();
     private Queue<GameObject> _usedInstances
         = new Queue<GameObject>();
-
-    private void Start() => UpdateIcons();
-
-    public void UpdateIcons()
+    
+    private void Update()
     {
-        Debug.Log("Updating Icons");
         while (_cannonFire.CurrentAmmo - _usedInstances.Count != _instances.Count
             || _usedInstances.Count != _missionControl.QueuedCommandCount)
         {

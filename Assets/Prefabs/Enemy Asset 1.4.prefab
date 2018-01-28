@@ -9,33 +9,32 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1173336668331432}
+  m_RootGameObject: {fileID: 1958755941442912}
   m_IsPrefabParent: 1
---- !u!1 &1173336668331432
+--- !u!1 &1958755941442912
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4575335904043420}
-  - component: {fileID: 212883650099316564}
-  - component: {fileID: 114420483803741720}
-  - component: {fileID: 61757916004349190}
-  - component: {fileID: 114149886116470346}
+  - component: {fileID: 4971941863158754}
+  - component: {fileID: 212685261521136630}
+  - component: {fileID: 114301941476896566}
+  - component: {fileID: 61997684961315954}
   m_Layer: 8
-  m_Name: Enemy Asset 3
+  m_Name: Enemy Asset 1.4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4575335904043420
+--- !u!4 &4971941863158754
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1173336668331432}
+  m_GameObject: {fileID: 1958755941442912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.241, y: -0.642, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -43,12 +42,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61757916004349190
+--- !u!61 &61997684961315954
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1173336668331432}
+  m_GameObject: {fileID: 1958755941442912}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -59,7 +58,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48666668, y: 0.52666664}
+    oldSize: {x: 0.48, y: 0.52}
     newSize: {x: 0.72, y: 0.78}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -68,55 +67,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
---- !u!114 &114149886116470346
+--- !u!114 &114301941476896566
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1173336668331432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6057680d26ba2144bf8b7213e9a7dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _killDistance: 8
---- !u!114 &114420483803741720
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1173336668331432}
+  m_GameObject: {fileID: 1958755941442912}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 088cc0cee34babc48b43ede03b86f123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _killPoints: 1
+  _killPoints: 2
   _hitMask:
     serializedVersion: 2
     m_Bits: 512
   _onHit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114149886116470346}
-        m_MethodName: Execute
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  _speed: 0.5
---- !u!212 &212883650099316564
+  _speed: 4
+--- !u!212 &212685261521136630
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1173336668331432}
+  m_GameObject: {fileID: 1958755941442912}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -145,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 21c7be1ff64de634daf02d0a1b27dd1e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6f245e4933c5dac4aa07114238b96837, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
