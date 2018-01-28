@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class AutoType : MonoBehaviour
 {
+    [SerializeField]
+    private UnityEvent _onDone;
+
     private const string StartText = "C:\\ ";
 
     private readonly string[] _scripts =
@@ -75,6 +79,10 @@ public class AutoType : MonoBehaviour
             }
 
             _waitTime--;
+        }
+        else
+        {
+            _onDone.Invoke();
         }
     }
 
