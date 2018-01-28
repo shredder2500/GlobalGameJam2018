@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CannonAimControl : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class CannonAimControl : MonoBehaviour
     [SerializeField]
     private AnimationCurve _fireAngleCurve = 
         new AnimationCurve(new Keyframe(0, 90), new Keyframe(.5f, 0), new Keyframe(1, -90));
+
+    [SerializeField]
+    private UnityEvent _onStartMove;
+    [SerializeField]
+    private UnityEvent _onEndMove;
     
     private float _fireAngle = 0;
     private bool _targetLocked = false;
@@ -36,6 +42,7 @@ public class CannonAimControl : MonoBehaviour
         else if(!_targetLocked)
         {
             _targetLocked = true;
+            _onEndMove.Invoke();
             TargetLocked?.Invoke();
         }
     }
@@ -45,6 +52,7 @@ public class CannonAimControl : MonoBehaviour
     public void SetFireAngle(float angle)
     {
         _targetLocked = false;
+        _onStartMove.Invoke();
         _fireAngle = Mathf.Clamp(_fireAngleCurve.Evaluate(angle / 180f), -_maxAngle, _maxAngle);
     }
 }

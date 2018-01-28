@@ -66,6 +66,11 @@ public class MissileFire : MonoBehaviour, IHitable
     public void Hit()
     {
         _onHit?.Invoke(_killPoints);
+        Kill();
+    }
+
+    public void Kill()
+    {
         _onHit.RemoveAllListeners();
         ObjectPool.Main.PoolObject(MISSILE_POOL_NAME, gameObject);
     }

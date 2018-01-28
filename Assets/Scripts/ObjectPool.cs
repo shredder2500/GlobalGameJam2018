@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjectPool
 {
-    public static readonly ObjectPool Main = new ObjectPool();
+    public static ObjectPool Main = new ObjectPool();
 
     private Dictionary<string, Queue<GameObject>> _pools
         = new Dictionary<string, Queue<GameObject>>();
+
+    static ObjectPool()
+    {
+        SceneManager.sceneLoaded += (_, __) => Main = new ObjectPool();
+    }
 
     public GameObject GetObjectInstance(string poolName, Func<GameObject> factory)
     {

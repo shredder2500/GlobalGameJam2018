@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace System.Linq
 {
-    public static class ForeachExtension
+    public static class LinqExtension
     {
         public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
@@ -12,5 +12,7 @@ namespace System.Linq
                 action(item);
             }
         }
+
+        
     }
 }
