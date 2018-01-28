@@ -33,7 +33,7 @@ public class MissileFire : MonoBehaviour, IHitable
 
     private void CheckForHit()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector3.zero - transform.position, 1, _hitMask);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, (Vector3.zero - transform.position).normalized, .25f, _hitMask);
         if (hit.collider != null)
         {
             hit.collider.GetComponent<IHitable>()?.Hit();

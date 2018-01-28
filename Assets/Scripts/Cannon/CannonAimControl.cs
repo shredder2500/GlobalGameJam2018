@@ -8,6 +8,7 @@ public class CannonAimControl : MonoBehaviour
     [SerializeField]
     private float _rotateSpeed = 5;
 
+    [SerializeField]
     private AnimationCurve _fireAngleCurve = 
         new AnimationCurve(new Keyframe(0, 90), new Keyframe(.5f, 0), new Keyframe(1, -90));
     
@@ -39,11 +40,11 @@ public class CannonAimControl : MonoBehaviour
         }
     }
 
-    private bool CloseEnough(float a, float b, float value = .5f) => Math.Abs(a - b) <= value;
+    private bool CloseEnough(float a, float b, float value = .05f) => Math.Abs(a - b) <= value;
 
     public void SetFireAngle(float angle)
     {
         _targetLocked = false;
-        _fireAngle = Mathf.Clamp(_fireAngleCurve.Evaluate(angle / 180), -_maxAngle, _maxAngle);
+        _fireAngle = Mathf.Clamp(_fireAngleCurve.Evaluate(angle / 180f), -_maxAngle, _maxAngle);
     }
 }
