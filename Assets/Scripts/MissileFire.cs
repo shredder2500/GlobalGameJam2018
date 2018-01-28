@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class MissileFire : MonoBehaviour, IHitable
@@ -11,7 +12,11 @@ public class MissileFire : MonoBehaviour, IHitable
     private LayerMask _hitMask;
     [SerializeField]
     private IntEvent _onHit;
+
+    [SerializeField]
+    private float _speed = 1;
     public UnityEvent<int> OnHit => _onHit;
+    public event Action<int> OnKill;
 
     private Vector3 startMarker;
     private Vector3 endMarker;
@@ -42,7 +47,7 @@ public class MissileFire : MonoBehaviour, IHitable
 
     private void Move()
     {
-        float distCovered = (Time.time - startTime) / _time;
+        float distCovered = (Time.time - startTime) / (_time / _speed);
         float fracJourney = distCovered / journeyLength;
         transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
     }
@@ -71,6 +76,7 @@ public class MissileFire : MonoBehaviour, IHitable
 
     public void Kill()
     {
+        OnKill?.Invoke(_killPoints);
         _onHit.RemoveAllListeners();
         ObjectPool.Main.PoolObject(MISSILE_POOL_NAME, gameObject);
     }
