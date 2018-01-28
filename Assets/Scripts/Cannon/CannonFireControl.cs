@@ -35,6 +35,9 @@ public class CannonFireControl : MonoBehaviour
         }
     }
 
+    public void AddAmmo(int amount) =>
+        _currentAmmo = Mathf.Clamp(_currentAmmo + amount, 0, _maxAmmo);
+
     public void ResetAmmo()
     {
         _currentAmmo = _maxAmmo;

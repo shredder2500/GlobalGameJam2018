@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour {
     public float tempTime;
     private bool warnState;
     private bool endState;
+    [SerializeField]
     private Text timerText;
     [SerializeField]
     private UnityEvent onTimerComplete;
@@ -25,7 +26,7 @@ public class Timer : MonoBehaviour {
         } 
         startTime = Time.time;
         warnState = false;
-        timerText = GetComponent<Text>();
+        //timerText = GetComponent<Text>();
         timerText.color = Color.blue;
 	}
 	
@@ -46,7 +47,7 @@ public class Timer : MonoBehaviour {
         }
 	}
 
-    void SetStageTime (float inTime)
+    public void SetStageTime (float inTime)
     {
         startTime = Time.time;
         stageTime = inTime;

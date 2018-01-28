@@ -1,64 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Manager : MonoBehaviour {
+[RequireComponent(typeof(Timer))]
+public class Manager : MonoBehaviour
+{
     [SerializeField]
-    private int missileCount;
+    private MissileFire _enemyPrefab;
     [SerializeField]
-    private int level;
-    private int powerupCount;
-    private float levelTime;
+    private int _missileCount;
     [SerializeField]
-    private float diffMod;
-    [SerializeField]
-    private float initialTime;
-    [SerializeField]
-    private int proximity;
+    private float _waveTime = 2;
+
+    private Timer _timer;
 
     private AnimationCurve spawnDegree =
         new AnimationCurve(new Keyframe(0, 90), new Keyframe(.5f, 0), new Keyframe(1, -90));
 
-    private float CurrentAngle(float value)
+    private float CurrentAngle(float value) =>
+        value > 180 ? -(360 - value) : value;
+
+    private float CurrentAngle() =>
+        CurrentAngle(transform.localRotation.eulerAngles.z);
+
+    private void Start()
     {
-        if (value > 180) {
-            return -(360 - value);
-        }
-        else
+        _timer = GetComponent<Timer>();
+        SpawnEnemies();
+    }
+
+    public void SpawnEnemies()
+    {
+        for (var i = 0; i < _missileCount; i++)
         {
-            return value;
+            SpawnEnemy();
         }
+        _timer.SetStageTime(_waveTime);
     }
 
-    private float CurrentAngle()
-    {
-        return CurrentAngle(transform.localRotation.eulerAngles.z);
-    }
+    private Quaternion CalcTargetQuaternion(Vector3 rotation, float angle) =>
+        Quaternion.Euler(rotation.x, rotation.y, angle);
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private Quaternion CalcTargetQuaternion(float angle) =>
+        CalcTargetQuaternion(transform.localRotation.eulerAngles, angle);
 
-    void LevelInit()
+    private void SpawnEnemy()
     {
-        level++;
-    }
+        var spawnAngle = Mathf.Clamp(spawnDegree.Evaluate(Random.value), -75, 75);
+        transform.rotation = CalcTargetQuaternion(spawnAngle);
 
-    public void SetSpawnPoint(float angle)
-    {
-        var spawnAngle = Random.Range(15, 165);
-        Vector3.
-        _fireAngle = Mathf.Clamp(_fireAngleCurve.Evaluate(angle / 180), -_maxAngle, _maxAngle);
-    }
-
-    void TimerSet()
-    {
-        levelTime = (initialTime - (level * diffMod) - proximity);
+        var instance = ObjectPool.Main.GetObjectInstance(MissileFire.MISSILE_POOL_NAME, () => Instantiate(_enemyPrefab).gameObject);
+        instance.GetComponent<MissileFire>().SetMissile(transform.up * 10, Vector3.zero, _waveTime * 2);
     }
 }

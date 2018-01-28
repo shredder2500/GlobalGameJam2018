@@ -41,6 +41,7 @@ public class MissionControl : MonoBehaviour
         {
             _cannon.TargetLocked -= Fire;
             _isExecuting = false;
+            _cannon.SetFireAngle(90);
         }
     }
 

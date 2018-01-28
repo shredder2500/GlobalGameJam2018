@@ -14,8 +14,6 @@ public class MissileFire : MonoBehaviour, IHitable
     private float startTime;
     private float journeyLength;
 
-
-
     void Start()
     {
         startTime = Time.time;
@@ -28,8 +26,10 @@ public class MissileFire : MonoBehaviour, IHitable
         transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
     }
 
-    void SetMissile (Vector3 startVal, Vector3 endVal, float time)
+    public void SetMissile (Vector3 startVal, Vector3 endVal, float time)
     {
+        transform.position = startVal;
+        //transform.up = endVal - startVal;
         _time = time;
         startMarker = startVal;
         endMarker = endVal;

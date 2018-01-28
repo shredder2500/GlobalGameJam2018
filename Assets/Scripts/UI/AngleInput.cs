@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -9,16 +10,22 @@ using UnityEngine.UI;
 public class AngleInput : MonoBehaviour
 {
     private InputField _input;
-
     private void Start() => _input = GetComponent<InputField>();
 
-    private void Update ()
+    [SerializeField]
+    private FloatEvent _onSubmit;
+
+    public void Invoke(string value)
     {
         ForceFocus();
-        if(!string.IsNullOrEmpty(_input.text))
-        {
-            _input.text = Mathf.Clamp(float.Parse(_input.text), 0, 180).ToString();
-        }
+        if (string.IsNullOrEmpty(value)) return;
+        _onSubmit.Invoke(Clamp(value));
+    }
+
+    private float Clamp (string value)
+    {
+        ForceFocus();
+        return Mathf.Clamp(float.Parse(value), 15, 165);
     }
 
     private void ForceFocus()
