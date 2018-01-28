@@ -11,7 +11,7 @@ public class CannonFireControl : MonoBehaviour
     private Projectile _projectile;
 
     [SerializeField]
-    private UnityEvent _onFire, _onOutOfAmmo, _onAmmoReset;
+    private UnityEvent _onFire, _onOutOfAmmo, _onAmmoAdded;
 
     private int _currentAmmo;
 
@@ -35,12 +35,9 @@ public class CannonFireControl : MonoBehaviour
         }
     }
 
-    public void AddAmmo(int amount) =>
-        _currentAmmo = Mathf.Clamp(_currentAmmo + amount, 0, _maxAmmo);
-
-    public void ResetAmmo()
+    public void AddAmmo(int amount)
     {
-        _currentAmmo = _maxAmmo;
-        _onAmmoReset.Invoke();
+        _onAmmoAdded.Invoke();
+        _currentAmmo = Mathf.Clamp(_currentAmmo + amount, 0, _maxAmmo);
     }
 }
