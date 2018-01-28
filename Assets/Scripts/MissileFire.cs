@@ -12,7 +12,9 @@ public class MissileFire : MonoBehaviour, IHitable
     private LayerMask _hitMask;
     [SerializeField]
     private IntEvent _onHit;
-
+    [SerializeField]
+    private UnityEvent _onSpawn;
+    
     [SerializeField]
     private float _speed = 1;
     public UnityEvent<int> OnHit => _onHit;
@@ -52,6 +54,8 @@ public class MissileFire : MonoBehaviour, IHitable
         transform.position = Vector3.Lerp(startMarker, endMarker, fracJourney);
     }
 
+    private void OnEnable() => _onSpawn.Invoke();
+
     public void SetMissile (Vector3 startVal, Vector3 endVal, float time)
     {
         transform.position = startVal;
@@ -78,6 +82,8 @@ public class MissileFire : MonoBehaviour, IHitable
     {
         OnKill?.Invoke(_killPoints);
         _onHit.RemoveAllListeners();
-        ObjectPool.Main.PoolObject($"{MISSILE_POOL_NAME}_{name}", gameObject);
+        
     }
+
+    public void PoolObject() => ObjectPool.Main.PoolObject($"{MISSILE_POOL_NAME}_{name}", gameObject);
 }

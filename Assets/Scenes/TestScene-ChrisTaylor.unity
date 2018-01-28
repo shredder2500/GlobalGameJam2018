@@ -296,7 +296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ca6a671365c8c4a8fba110918faecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempTime: 0
   timerText: {fileID: 1622045892}
   onTimerComplete:
     m_PersistentCalls:
@@ -334,6 +333,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _onEnterWarningTime:
+    m_PersistentCalls:
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &367774940
@@ -1866,6 +1870,11 @@ Prefab:
         type: 2}
       propertyPath: _onCommanQueued.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 212196903043943046, guid: 0eae668a2ffa91b4ca6f0b09c0f72565,
+        type: 2}
+      propertyPath: m_DrawMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eae668a2ffa91b4ca6f0b09c0f72565, type: 2}
