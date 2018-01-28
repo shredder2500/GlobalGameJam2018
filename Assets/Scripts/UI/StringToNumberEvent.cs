@@ -2,16 +2,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StringToNumberEvent : MonoBehaviour
+public class NumberToStringEVent : MonoBehaviour
 {
     [SerializeField]
-    private FloatEvent _onEvent;
+    private StringEvent _onEvent;
 
-    public void Invoke(string value)
+    public void Invoke(float value)
     {
-        if(!string.IsNullOrEmpty(value))
-        {
-            _onEvent.Invoke(float.Parse(value));
-        }
+        _onEvent.Invoke(value.ToString());
     }
 }
