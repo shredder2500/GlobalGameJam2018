@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212962807777827522}
   - component: {fileID: 114441282022193896}
   - component: {fileID: 61248569321947262}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Asset 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,11 +78,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088cc0cee34babc48b43ede03b86f123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _onHit:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  _killPoints: 1
+  _hitMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!212 &212962807777827522
 SpriteRenderer:
   m_ObjectHideFlags: 1
