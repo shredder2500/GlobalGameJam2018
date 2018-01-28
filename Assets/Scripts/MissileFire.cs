@@ -78,6 +78,6 @@ public class MissileFire : MonoBehaviour, IHitable
     {
         OnKill?.Invoke(_killPoints);
         _onHit.RemoveAllListeners();
-        ObjectPool.Main.PoolObject(MISSILE_POOL_NAME, gameObject);
+        ObjectPool.Main.PoolObject($"{MISSILE_POOL_NAME}_{name}", gameObject);
     }
 }
