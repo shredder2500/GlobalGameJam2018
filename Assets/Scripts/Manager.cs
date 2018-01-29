@@ -64,6 +64,7 @@ public class Manager : MonoBehaviour
         var instance = ObjectPool.Main.GetObjectInstance($"{MissileFire.MISSILE_POOL_NAME}_{prefab.name}", () => CreateEnemey(prefab));
         var enemy = instance.GetComponent<MissileFire>();
         enemy.SetMissile(transform.up * 10, Vector3.zero, _waveTime * 2);
+        enemy.SetTrailAngle(spawnAngle);
         enemy.OnHit.AddListener(IncreaseScore);
 
     }

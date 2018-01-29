@@ -14,6 +14,8 @@ public class MissileFire : MonoBehaviour, IHitable
     private IntEvent _onHit;
     [SerializeField]
     private UnityEvent _onSpawn;
+    [SerializeField]
+    private Transform _trail;
     
     [SerializeField]
     private float _speed = 1;
@@ -55,6 +57,12 @@ public class MissileFire : MonoBehaviour, IHitable
     }
 
     private void OnEnable() => _onSpawn.Invoke();
+
+    public void SetTrailAngle(float rotation)
+    {
+        if (!_trail) return;
+        _trail.rotation = Quaternion.Euler(0, 0, rotation);
+    }
 
     public void SetMissile (Vector3 startVal, Vector3 endVal, float time)
     {
